@@ -1,2 +1,4 @@
+collections:
+  - community.crypto
 roles:
   - gantsign.oh-my-zsh

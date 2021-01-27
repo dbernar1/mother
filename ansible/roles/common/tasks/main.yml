@@ -13,3 +13,10 @@
   ansible.builtin.file:
     path: /home/ubuntu/code
     state: directory
+    owner: ubuntu
+    group: ubuntu
+- name: Create SSH key
+  community.crypto.openssh_keypair:
+    path: /home/ubuntu/.ssh/id_rsa
+    owner: ubuntu
+    group: ubuntu
