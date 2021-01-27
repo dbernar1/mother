@@ -10,3 +10,8 @@
   become: yes
   roles:
   - dot-net-dev
+
+- hosts: node-dev
+  become: yes
+  roles:
+  - node-dev

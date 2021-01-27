@@ -1,0 +1,6 @@
+- name: Install Node 14
+  snap:
+    name: node
+    channel: "14"
+    classic: yes
+    state: present
