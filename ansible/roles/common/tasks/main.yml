@@ -9,3 +9,7 @@
   apt:
     name: silversearcher-ag
     state: present
+- name: Create code directory
+  ansible.builtin.file:
+    path: /home/ubuntu/code
+    state: directory
