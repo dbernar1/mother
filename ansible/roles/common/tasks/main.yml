@@ -1,0 +1,11 @@
+- name: refresh packages
+  apt:
+    update_cache: true
+- name: install aptitude
+  apt:
+    name: aptitude
+    state: present
+- name: install ag
+  apt:
+    name: silversearcher-ag
+    state: present
