@@ -1,10 +1,12 @@
 - hosts: all
   become: yes
+  vars:
+  - host_username: ubuntu
   roles:
   - common
   - role: gantsign.oh-my-zsh
     users:
-      - username: ubuntu
+      - username: "{{ host_username }}"
 
 - hosts: dot-net-dev
   become: yes
@@ -15,3 +17,29 @@
   become: yes
   roles:
   - node-dev
+
+- hosts: mysql-dev
+  become: yes
+  tasks:
+  - name: Install mysql server and client
+    apt:
+      name:
+      - mysql-server
+      - mysql-client
+
+- hosts: cypress-dev
+  become: yes
+  tasks:
+  - name: Install packages cypress requires
+    apt:
+      name:
+      - libgtk2.0-0
+      - libgtk-3-0
+      - libnotify-dev
+      - libgconf-2-4
+      - libnss3
+      - libxss1
+      - libasound2
+      - libxtst6
+      - xauth
+      - xvfb

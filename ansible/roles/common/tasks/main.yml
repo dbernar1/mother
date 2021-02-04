@@ -4,19 +4,52 @@
 - name: Install aptitude
   apt:
     name: aptitude
-    state: present
+- name: Install essential build packages
+  apt:
+    name: build-essential
 - name: Install ag
   apt:
     name: silversearcher-ag
-    state: present
 - name: Create code directory
   ansible.builtin.file:
-    path: /home/ubuntu/code
+    path: "/home/{{ host_username }}/code"
     state: directory
-    owner: ubuntu
-    group: ubuntu
+    owner: "{{ host_username }}"
+    group: "{{ host_username }}"
 - name: Create SSH key
   community.crypto.openssh_keypair:
-    path: /home/ubuntu/.ssh/id_rsa
-    owner: ubuntu
-    group: ubuntu
+    path: "/home/{{ host_username }}/.ssh/id_rsa"
+    owner: "{{ host_username }}"
+    group: "{{ host_username }}"
+- name: Set up vim as the git editor
+  become_user: "{{ host_username }}"
+  community.general.git_config:
+    name: core.editor
+    scope: global
+    value: vim
+- name: Set up git user.email
+  become_user: "{{ host_username }}"
+  community.general.git_config:
+    name: user.email
+    scope: global
+    value: "{{ git_user_email }}"
+- name: Set up git user.email
+  become_user: "{{ host_username }}"
+  community.general.git_config:
+    name: user.name
+    scope: global
+    value: "{{ git_user_name }}"
+- name: Create .vimtmp
+  ansible.builtin.file:
+    path: "/home/{{ host_username }}/.vimtmp"
+    state: directory
+    owner: "{{ host_username }}"
+    group: "{{ host_username }}"
+- name: Create .vimrc
+  copy:
+    src: vimrc
+    dest: "/home/{{ host_username }}/.vimrc"
+    backup: yes
+    mode: 0640
+    owner: "{{ host_username }}"
+    group: "{{ host_username }}"

@@ -1,0 +1,29 @@
+" let's see those line numbers
+set nu
+
+" my preferred style of of auto-indentation
+set smartindent
+
+" highlight searched keywords
+set hlsearch
+
+" highlight visual selection
+highlight Visual cterm=reverse ctermbg=NONE
+
+" create .swp temp files in my home dir instead of in the current directory
+set backupdir=~/.vimtmp
+set directory=~/.vimtmp
+
+" remember command history across vim sessions
+set viminfo=%,<800,'10,/50,:100,h,f0,n~/.viminfo
+"           | |    |   |   |    | |  + viminfo file path
+"           | |    |   |   |    | + file marks 0-9,A-Z 0=NOT stored
+"           | |    |   |   |    + disable 'hlsearch' loading viminfo
+"           | |    |   |   + command-line history saved
+"           | |    |   + search history saved
+"           | |    + files marks saved
+"           | + lines saved each register (old name for <, vi6.2)
+"           + save/restore buffer list
+
+" Yaml-specific config
+autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
