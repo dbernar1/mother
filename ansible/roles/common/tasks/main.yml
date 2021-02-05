@@ -40,8 +40,14 @@
     scope: global
     value: "{{ git_user_name }}"
 - name: Create .vimtmp
-  ansible.builtin.file:
+  file:
     path: "/home/{{ host_username }}/.vimtmp"
+    state: directory
+    owner: "{{ host_username }}"
+    group: "{{ host_username }}"
+- name: Create .vim plugins dir
+  ansible.builtin.file:
+    path: "/home/{{ host_username }}/.vim/pack/plugins/start"
     state: directory
     owner: "{{ host_username }}"
     group: "{{ host_username }}"
@@ -53,3 +59,11 @@
     mode: 0640
     owner: "{{ host_username }}"
     group: "{{ host_username }}"
+- name: Clone prettier plugin for vim
+  git:
+    repo: https://github.com/prettier/vim-prettier
+    dest: "/home/{{ host_username }}/.vim/pack/plugins/start/vim-prettier"
+- name: Install prettier
+  npm:
+    name: prettier
+    global: yes

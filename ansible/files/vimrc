@@ -27,3 +27,7 @@ set viminfo=%,<800,'10,/50,:100,h,f0,n~/.viminfo
 
 " Yaml-specific config
 autocmd FileType yaml setlocal ts=2 sts=2 sw=2 expandtab
+
+" Load plugins
+packloadall
+autocmd BufWrite *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
