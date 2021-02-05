@@ -4,3 +4,4 @@ collections:
   - community.mysql
 roles:
   - gantsign.oh-my-zsh
+  - andrelohmann.nodesource

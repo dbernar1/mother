@@ -16,9 +16,11 @@
 - hosts: node-dev
   become: yes
   roles:
+  - andrelohmann.nodesource
   - node-dev
   vars:
   - host_username: ubuntu
+  - nodesource_nodejs_version: '14'
 
 - hosts: cypress-dev
   become: yes

@@ -1,9 +1,3 @@
-- name: Install Node 14
-  snap:
-    name: node
-    channel: "14"
-    classic: yes
-    state: present
 - name: Clone prettier plugin for vim
   git:
     repo: https://github.com/prettier/vim-prettier
@@ -11,4 +5,8 @@
 - name: Install prettier
   npm:
     name: prettier
+    global: yes
+- name: Install yarn
+  npm:
+    name: yarn
     global: yes
