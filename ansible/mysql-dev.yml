@@ -1,0 +1,26 @@
+- hosts: mysql-dev
+  become: yes
+  tasks:
+  - name: Install mysql server and client
+    apt:
+      name:
+      - mysql-server
+      - mysql-client
+  - name: Install pip
+    apt:
+      name: python3-pip
+  - name: Install pymysql
+    pip:
+      name: pymysql
+  - name: Create database
+    community.mysql.mysql_db:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      name:
+      - "{{ project_name }}"
+      - "test-{{ project_name }}"
+  - name: Create database user
+    community.mysql.mysql_user:
+      login_unix_socket: /var/run/mysqld/mysqld.sock
+      name: "{{ project_name }}"
+      password: "{{ project_name }}"
+      priv: "test-{{project_name}}.*:ALL/{{project_name}}.*:ALL"

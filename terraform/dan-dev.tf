@@ -3,9 +3,25 @@ provider "aws" {
   region  = "ca-central-1"
 }
 
+data "aws_ami" "ubuntu" {
+  most_recent = true
+
+  filter {
+    name   = "name"
+    values = ["ubuntu/images/hvm-ssd/ubuntu-focal-20.04-arm64-server-*"]
+  }
+
+  filter {
+    name   = "virtualization-type"
+    values = ["hvm"]
+  }
+
+  owners = ["099720109477"] # Canonical
+}
+
 resource "aws_instance" "dan-dev" {
-  ami             = "ami-02e44367276fe7adc"
-  instance_type   = "t2.micro"
+  ami             = data.aws_ami.ubuntu.id
+  instance_type   = "t4g.micro"
   key_name        = "bwah-key"
   security_groups = ["default", "dan-dev"]
 }

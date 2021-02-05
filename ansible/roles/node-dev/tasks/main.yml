@@ -4,3 +4,11 @@
     channel: "14"
     classic: yes
     state: present
+- name: Clone prettier plugin for vim
+  git:
+    repo: https://github.com/prettier/vim-prettier
+    dest: "/home/{{ host_username }}/.vim/pack/plugins/start/vim-prettier"
+- name: Install prettier
+  npm:
+    name: prettier
+    global: yes

@@ -1,12 +1,12 @@
 - hosts: all
   become: yes
-  vars:
-  - host_username: ubuntu
   roles:
   - common
   - role: gantsign.oh-my-zsh
     users:
       - username: "{{ host_username }}"
+  vars:
+  - host_username: ubuntu
 
 - hosts: dot-net-dev
   become: yes
@@ -17,15 +17,8 @@
   become: yes
   roles:
   - node-dev
-
-- hosts: mysql-dev
-  become: yes
-  tasks:
-  - name: Install mysql server and client
-    apt:
-      name:
-      - mysql-server
-      - mysql-client
+  vars:
+  - host_username: ubuntu
 
 - hosts: cypress-dev
   become: yes
