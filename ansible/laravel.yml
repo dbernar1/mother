@@ -11,6 +11,15 @@
       - curl
       - gnupg-agent
       - software-properties-common
+  - name: Add Ondrej PHP Repository
+    apt_repository:
+      repo: ppa:ondrej/php
+      update_cache: true
+  - name: Add PHP 8
+    apt:
+      name:
+      - php8.0
+      - php8.0-xml
   - name: Add Docker GPG apt Key
     apt_key:
       url: https://download.docker.com/linux/ubuntu/gpg
