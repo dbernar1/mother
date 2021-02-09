@@ -1,13 +1,3 @@
-- hosts: all
-  become: yes
-  roles:
-  - common
-  - role: gantsign.oh-my-zsh
-    users:
-      - username: "{{ host_username }}"
-  vars:
-  - host_username: ubuntu
-
 - hosts: dot-net-dev
   become: yes
   roles:
