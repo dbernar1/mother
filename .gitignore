@@ -34,3 +34,5 @@ terraform.rc
 
 # Ignore deployments
 terraform/deployments
+#Ignore Ansible inventory file
+ansible/hosts
