@@ -1,0 +1,14 @@
+- hosts: php-dev
+  vars:
+  - host_username: ubuntu
+  become: yes
+  tasks:
+  - name: Add Ondrej PHP Repository
+    apt_repository:
+      repo: ppa:ondrej/php
+      update_cache: true
+  - name: Add PHP 8
+    apt:
+      name:
+      - php8.1
+      - php8.1-xml
